@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = 'mongodb://localhost:27017/next-auth'
+const MONGODB_URI = 'mongodb://localhost:27017/auth-app'
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -18,6 +18,7 @@ let cached = global.mongoose
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
 }
+
 
 async function dbConnect() {
   if (cached.conn) {

@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
 const {Schema} = mongoose
 
 const userSchema = new Schema({
@@ -41,10 +42,5 @@ userSchema.statics.findByCresidentials = async (email,password)=>{
     return user
 }
 
-userSchema.pre('save',async function(next){
-    this.password = await bcrypt.hash(this.password,8)
-    next()
-})
-
 const User = mongoose.model('User',userSchema)
-module.exports = User
+export default User
